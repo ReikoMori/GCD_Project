@@ -40,47 +40,40 @@ Files used for this project are the following of the unzipped folder of above so
 
 - 'test/subject_test.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30. 
 
+Following files are also used to label the variables and to use descriptive activity names:
+
+- 'features.txt': List of all features.
+
+- 'activity_labels.txt': Links the class labels with their activity name.
 
 *  *  *  *
 ### The variables
 
+The variables used in the output dataset are following:
+
+Column 1 - 'Activity_Label' : Name of the activity 
+
+Column 2 - 'Subject' : Subject ID
+
+Column 3 to 69 - variables with their descriptive variable names specified in 'features.txt' that include mean() and std() included. 
+
+For descriptions of each variables, please see 'features_info.txt'.
+
 ### Data Transformation and Work Performed
 
-This section describes any changes or alterations made to the data during processing. For a explaination of how the script works you should look at the *README.md* and the code *run_analysis.R* files.
+Data transformation was done in following steps, as indicated in the Course Project description. However, the order has been changed for step 4 to come just after step 1.
 
+1. Merge the training and the test sets to create one data set.
 
-**Merges the training and the test sets to create one data set.**
+2. Extract only the measurements on the mean and standard deviation for each measurement. 
 
-During this step no changes were made to the contents of the datasets.The *test* and *train* samples were joined together into a dataframe containing [*Activity, SubjectID, Variable_1, ..., Variable_561*].
+3. Use descriptive activity names to name the activities in the data set.
 
-**Extracts only the measurements on the mean and standard deviation for each measurement.** 
+4. Appropriately label the data set with descriptive variable names. 
 
-The instruction to extact only the mean and standard deviation for each measurement was interpreted to mean only those variables that were estimated from the signals using: 
+5. From the data set in step 4, create a second, independent tidy data set with the average of each variable for each activity and each subject.
 
-        mean(): Mean value
-        std(): Standard deviation
-
-These variable were identified by the use of *-mean()* and *-std()* in the variable name.These 66 variables were extracted into a new dataframe along with the *Activity* and *SubjectID* identifiers.
-
-**Uses descriptive activity names to name the activities in the data set.**
-
-The *Activity* variable contained numbers 1-6 corresponding to *WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING* repectively. For this step the number was replaced with the corresponding descriptive activity name.
-
-**Appropriately labels the data set with descriptive variable names.**
-
-Descriptive variable names were added to the dataset. For the most part the names supplied with the project were suitable descriptive but some clean up was required.
-
-For example:
-*Sub* became *SubjectID*
-*6 tBodyAcc-std()-X* became  *tBodyAcc-std()-X-Axis*
-
-The *Data Dictionary* contains the full list of all descriptive variable names.
-
-**From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.**
-
-For the final processing step the dataset was first grouped by *Activity* and then *SubjectID*. The *summarise_each()* function was then used to extract the average of each of the 66 variable for the 180 different groupings of activity and subject into a new dataframe called *tidyData*.
-
-This completed the projects processing steps.
+For descriptions of work done for each step, please see the comments in the code.
 
 *  *  *  *
 
